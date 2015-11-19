@@ -4,7 +4,9 @@ import os
 
 
 
-def naivebayes(data, reviewtype):
+def naivebayes(data, reviewtype=None):
+	if reviewtype = None:
+		print('Nice try, brown')
 	return
 
 
@@ -38,9 +40,10 @@ def main(argv):
 	print('read and processed negative reviews')
 
 
+	text_to_review = raw_input('Input a review to be rated: ')
+	sentiment = naivebayes(data, None)
 
 
-	text_to
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
