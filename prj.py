@@ -26,7 +26,7 @@ def main(argv):
 			print(os.path.join(root, review))
 
 
-	print('read and processed positive reviews')
+	print('read and processed positive reviews\n')
 
 
 
@@ -37,11 +37,11 @@ def main(argv):
 			print(os.path.join(root, review))
 
 
-	print('read and processed negative reviews')
+	print('read and processed negative reviews\n')
 
 
 	text_to_review = raw_input('Input a review to be rated: ')
-	sentiment = naivebayes(data, None)
+	sentiment = naivebayes(text_to_review, None)
 
 
 
