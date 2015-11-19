@@ -6,7 +6,7 @@ import os
 
 def naivebayes(data, reviewtype=None):
 	if reviewtype = None:
-		print('Nice try, brown')
+		print('Nice try, brown!')
 	return
 
 
