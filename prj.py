@@ -16,7 +16,8 @@ def naivebayes(data, reviewtype=None):
 	elif reviewtype is 'positive':
 		positive_reviews.append((data, '+'))
 
-
+	elif reviewtype is 'negative':
+		negative_reviews.append((data, '-'))
 
 
 
@@ -51,7 +52,14 @@ def main(argv):
 		for review in files:
 			# we'll need to feed these each into naive bayes
 			# naivebayes(review, negative)
-			print(os.path.join(root, review))
+			filename = os.path.join(root, review)
+			#print(os.path.join(root, review))
+			print(filename)
+			text = open(filename, 'r')
+			text = text.read()
+			text = text.replace('<br />', '')
+			#print(text)
+			naivebayes(text, 'negative')
 
 
 	print('read and processed negative reviews\n')
@@ -63,12 +71,33 @@ def main(argv):
 
 	#pprint.pprint(clean)
 
-	blah = []
-	for (derp, rev) in clean:
-		blah.extend(derp)
+	tmp = []
+	for (txt, rev) in clean:
+		tmp.extend(txt)
 
-	a = Counter(blah)
-	pprint.pprint(a)
+	pos_counts = Counter(tmp)
+	pprint.pprint(pos_counts)
+
+
+
+	print('\n\n\n--> done processing positive counts')
+	clean = []
+	for (text, review) in negative_reviews:
+		cleanup = [word.lower() for word in text.split() if len(word) > 2]
+		clean.append((cleanup, review))
+
+
+	tmp = []
+	for (txt, rev) in clean:
+		tmp.extend(txt)
+
+	neg_counts = Counter(tmp)
+	pprint.pprint(neg_counts)
+
+	print('\n\n\n--> done processing positive counts')
+
+
+
 
 	#text_to_review = raw_input('Input a review to be rated: ')
 	#sentiment = naivebayes(text_to_review, None)
